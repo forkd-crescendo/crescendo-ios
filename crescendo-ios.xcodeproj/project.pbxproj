@@ -13,6 +13,8 @@
 		9D8E009620B86F3100B41BDE /* crescendo_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E009420B86F3100B41BDE /* crescendo_ios.xcdatamodeld */; };
 		9D8E009820B86F3600B41BDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D8E009720B86F3600B41BDE /* Assets.xcassets */; };
 		9D8E009B20B86F3600B41BDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D8E009920B86F3600B41BDE /* LaunchScreen.storyboard */; };
+		C155153020C43EA500384852 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C155152F20C43EA500384852 /* Artist.swift */; };
+		C155153220C43EE200384852 /* ArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C155153120C43EE200384852 /* ArtistViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		9D8E009720B86F3600B41BDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D8E009A20B86F3600B41BDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D8E009C20B86F3600B41BDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C155152F20C43EA500384852 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		C155153120C43EE200384852 /* ArtistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		9D8E008C20B86F3000B41BDE /* crescendo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				C155152E20C43E8E00384852 /* ViewController */,
+				C155152D20C43E8300384852 /* Model */,
 				9D8E008D20B86F3000B41BDE /* AppDelegate.swift */,
 				9D8E008F20B86F3000B41BDE /* ViewController.swift */,
 				9D8E009120B86F3100B41BDE /* Main.storyboard */,
@@ -65,6 +71,22 @@
 				9D8E009420B86F3100B41BDE /* crescendo_ios.xcdatamodeld */,
 			);
 			path = "crescendo-ios";
+			sourceTree = "<group>";
+		};
+		C155152D20C43E8300384852 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C155152F20C43EA500384852 /* Artist.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C155152E20C43E8E00384852 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C155153120C43EE200384852 /* ArtistViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,7 +162,9 @@
 			files = (
 				9D8E009020B86F3000B41BDE /* ViewController.swift in Sources */,
 				9D8E009620B86F3100B41BDE /* crescendo_ios.xcdatamodeld in Sources */,
+				C155153020C43EA500384852 /* Artist.swift in Sources */,
 				9D8E008E20B86F3000B41BDE /* AppDelegate.swift in Sources */,
+				C155153220C43EE200384852 /* ArtistViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

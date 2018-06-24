@@ -26,6 +26,7 @@
 		C17217AE20E02B4A00ABC2DF /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C172178220E02B2E00ABC2DF /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C17217B120E02B5000ABC2DF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C172176820E02B2600ABC2DF /* Alamofire.framework */; };
 		C17217B220E02B5000ABC2DF /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C172176820E02B2600ABC2DF /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C17217B620E048F300ABC2DF /* ArtworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17217B520E048F300ABC2DF /* ArtworkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +235,7 @@
 		C172175C20E02B2600ABC2DF /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		C172177520E02B2E00ABC2DF /* AlamofireImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlamofireImage.xcodeproj; path = AlamofireImage/AlamofireImage.xcodeproj; sourceTree = "<group>"; };
 		C172178F20E02B3500ABC2DF /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
+		C17217B520E048F300ABC2DF /* ArtworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 				C10E5CED20DFF952008FB670 /* ArtistsTableViewController.swift */,
 				C10E5CEF20E00D0E008FB670 /* ArtistDetailViewController.swift */,
 				C172175520E01C8F00ABC2DF /* FavoritesTableViewController.swift */,
+				C17217B520E048F300ABC2DF /* ArtworkViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				C172175B20E0255900ABC2DF /* CrescendoApi.swift in Sources */,
 				C172175820E01EE500ABC2DF /* Artwork.swift in Sources */,
 				C155153220C43EE200384852 /* ArtistViewController.swift in Sources */,
+				C17217B620E048F300ABC2DF /* ArtworkViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

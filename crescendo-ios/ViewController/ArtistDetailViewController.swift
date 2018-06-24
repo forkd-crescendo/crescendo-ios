@@ -39,9 +39,12 @@ class ArtistDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     var artist: Artist?
     var artworks: [Artwork] = []
+    var currentArtworkIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        artworksTableView.delegate = self
         
         if let artist = artist {
             nameLabel.text = artist.name
@@ -81,6 +84,23 @@ class ArtistDetailViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentArtworkIndex = indexPath.row
+        print("did select row at \(indexPath.row)")
+        self.performSegue(withIdentifier: "ShowArtworkVideo", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowArtworkVideo" {
+            let artworkViewController = (segue.destination as! UINavigationController).viewControllers.first as! ArtworkViewController
+            
+            artworkViewController.artwork = artworks[currentArtworkIndex]
+            print("prepare for \(artworkViewController.artwork?.videoId)")
+            print("current index \(currentArtworkIndex)")
+        }
+        return
     }
 
     /*

@@ -33,7 +33,7 @@ class ArtistViewController: UICollectionViewController {
         //  self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
-        generateMockData()
+        // generateMockData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,10 +104,10 @@ class ArtistViewController: UICollectionViewController {
     }
     */
     
-    func generateMockData() {
-        for index in 1...10 {
-            artists.append(Artist(name: "mi artista \(index)", genre: "mi genero \(index)"))
-        }
-    }
+//    func generateMockData() {
+//        for index in 1...10 {
+//            artists.append(Artist(name: "mi artista \(index)", genre: "mi genero \(index)"))
+//        }
+//    }
 
 }

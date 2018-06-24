@@ -7,28 +7,59 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
+import SwiftyJSON
+
+class ArtworkCell: UITableViewCell {
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    func updateViews(for artwork: Artwork) {
+        
+        if let url = URL(string: artwork.thumbnail) {
+            thumbnailImageView.af_setImage(withURL: url)
+        }
+        
+        titleLabel.text = artwork.title
+        descriptionLabel.text = artwork.description
+    }
+    
+}
 
 class ArtistDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let animals = ["cat", "dog", "tiger"]
     
 
-    
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artworksTableView: UITableView!
     
     var artist: Artist?
+    var artworks: [Artwork] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let artist = artist {
             nameLabel.text = artist.name
+            if let url = URL(string: artist.photoUrl) {
+                pictureImageView.af_setImage(withURL: url)
+            }
+            
         }
+        
+        // update cell height
+        artworksTableView.beginUpdates()
+        artworksTableView.endUpdates()
+        
+        updateData()
 
         // Do any additional setup after loading the view.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,14 +67,20 @@ class ArtistDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return animals.count
+        return artworks.count
 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = animals[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ArtworkCell
+        
+        cell.updateViews(for: artworks[indexPath.row])
+
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
 
     /*
@@ -55,5 +92,26 @@ class ArtistDetailViewController: UIViewController, UITableViewDataSource, UITab
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func updateData() {
+        let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+        
+        let getArtworksUrl = CrescendoApi.getArtworks(by: artist!.id)
+        print(getArtworksUrl)
+        
+        Alamofire.request(getArtworksUrl, headers: headers)
+            .validate()
+            .responseJSON(completionHandler: { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    self.artworks = Artwork.buildAll(from: json.arrayValue)
+                    self.artworksTableView.reloadData()
+                case .failure(let error):
+                    print(error)
+                }
+            })
+
+    }
 
 }

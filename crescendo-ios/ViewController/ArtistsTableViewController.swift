@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
+import SwiftyJSON
 
 class ArtistTableViewCell: UITableViewCell {
     @IBOutlet weak var pictureImageView: UIImageView!
@@ -17,6 +20,9 @@ class ArtistTableViewCell: UITableViewCell {
     func updateViews(from artist: Artist) {
         nameLabel.text = artist.name
         genreLabel.text = artist.genre
+        if let url = URL(string: artist.photoUrl) {
+            pictureImageView.af_setImage(withURL: url)
+        }
     }
     
     
@@ -40,8 +46,11 @@ class ArtistsTableViewController: UITableViewController {
         tableView.beginUpdates()
         tableView.endUpdates()
 
-        generateMockData()
+        // generateMockData()
+        updateData()
     }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -89,10 +98,34 @@ class ArtistsTableViewController: UITableViewController {
 
     }
     
-    func generateMockData() {
-        for index in 1...10 {
-            artists.append(Artist(name: "mi artista \(index)", genre: "mi genero \(index)"))
-        }
+//    func generateMockData() {
+//        for index in 1...10 {
+//            artists.append(Artist(name: "mi artista \(index)", genre: "mi genero \(index)"))
+//        }
+//    }
+    
+    func updateData() {
+        
+        let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+        
+        Alamofire.request(CrescendoApi.artistsUrl, headers: headers)
+            .validate()
+            .responseJSON(completionHandler: { response in
+                switch response.result {
+                case .success(let value):
+                    
+                    let json = JSON(value)
+                    self.artists = Artist.buildAll(from: json.arrayValue)
+                    self.tableView!.reloadData()
+                    print(json)
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            })
+        
+        
+        
     }
 
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Artwork {
     var title: String
@@ -25,5 +26,17 @@ class Artwork {
         self.artistName = artistName
     }
     
+    convenience init(jsonArtwork: JSON) {
+        self.init(title: jsonArtwork["title"].stringValue, description: jsonArtwork["description"].stringValue, videoId: jsonArtwork["videoId"].stringValue, userId: jsonArtwork["created_by"].stringValue, thumbnail: jsonArtwork["thumbnail"].stringValue, artistName: jsonArtwork["artist"].stringValue)
+    }
     
+    static func buildAll(from jsonArtworks: [JSON]) -> [Artwork] {
+        var artworks: [Artwork] = []
+        
+        for jsonArtwork in jsonArtworks {
+            artworks.append(Artwork(jsonArtwork: jsonArtwork))
+        }
+        
+        return artworks
+    }
 }

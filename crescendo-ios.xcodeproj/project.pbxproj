@@ -19,6 +19,7 @@
 		C155153220C43EE200384852 /* ArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C155153120C43EE200384852 /* ArtistViewController.swift */; };
 		C172175620E01C8F00ABC2DF /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C172175520E01C8F00ABC2DF /* FavoritesTableViewController.swift */; };
 		C172175820E01EE500ABC2DF /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C172175720E01EE500ABC2DF /* Artwork.swift */; };
+		C172175B20E0255900ABC2DF /* CrescendoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C172175A20E0255900ABC2DF /* CrescendoApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		C155153120C43EE200384852 /* ArtistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewController.swift; sourceTree = "<group>"; };
 		C172175520E01C8F00ABC2DF /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
 		C172175720E01EE500ABC2DF /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		C172175A20E0255900ABC2DF /* CrescendoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrescendoApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		C172175920E0247C00ABC2DF /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C172175A20E0255900ABC2DF /* CrescendoApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				9D8E008E20B86F3000B41BDE /* AppDelegate.swift in Sources */,
 				C10E5CF020E00D0E008FB670 /* ArtistDetailViewController.swift in Sources */,
 				C10E5CEE20DFF952008FB670 /* ArtistsTableViewController.swift in Sources */,
+				C172175B20E0255900ABC2DF /* CrescendoApi.swift in Sources */,
 				C172175820E01EE500ABC2DF /* Artwork.swift in Sources */,
 				C155153220C43EE200384852 /* ArtistViewController.swift in Sources */,
 			);

@@ -17,6 +17,8 @@
 		C10E5CF020E00D0E008FB670 /* ArtistDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10E5CEF20E00D0E008FB670 /* ArtistDetailViewController.swift */; };
 		C155153020C43EA500384852 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C155152F20C43EA500384852 /* Artist.swift */; };
 		C155153220C43EE200384852 /* ArtistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C155153120C43EE200384852 /* ArtistViewController.swift */; };
+		C172175620E01C8F00ABC2DF /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C172175520E01C8F00ABC2DF /* FavoritesTableViewController.swift */; };
+		C172175820E01EE500ABC2DF /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C172175720E01EE500ABC2DF /* Artwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		C10E5CEF20E00D0E008FB670 /* ArtistDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetailViewController.swift; sourceTree = "<group>"; };
 		C155152F20C43EA500384852 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		C155153120C43EE200384852 /* ArtistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewController.swift; sourceTree = "<group>"; };
+		C172175520E01C8F00ABC2DF /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		C172175720E01EE500ABC2DF /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 		9D8E008C20B86F3000B41BDE /* crescendo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				C172175920E0247C00ABC2DF /* Network */,
 				C155152E20C43E8E00384852 /* ViewController */,
 				C155152D20C43E8300384852 /* Model */,
 				9D8E008D20B86F3000B41BDE /* AppDelegate.swift */,
@@ -81,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				C155152F20C43EA500384852 /* Artist.swift */,
+				C172175720E01EE500ABC2DF /* Artwork.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -91,8 +97,16 @@
 				C155153120C43EE200384852 /* ArtistViewController.swift */,
 				C10E5CED20DFF952008FB670 /* ArtistsTableViewController.swift */,
 				C10E5CEF20E00D0E008FB670 /* ArtistDetailViewController.swift */,
+				C172175520E01C8F00ABC2DF /* FavoritesTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C172175920E0247C00ABC2DF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,9 +183,11 @@
 				9D8E009020B86F3000B41BDE /* ViewController.swift in Sources */,
 				9D8E009620B86F3100B41BDE /* crescendo_ios.xcdatamodeld in Sources */,
 				C155153020C43EA500384852 /* Artist.swift in Sources */,
+				C172175620E01C8F00ABC2DF /* FavoritesTableViewController.swift in Sources */,
 				9D8E008E20B86F3000B41BDE /* AppDelegate.swift in Sources */,
 				C10E5CF020E00D0E008FB670 /* ArtistDetailViewController.swift in Sources */,
 				C10E5CEE20DFF952008FB670 /* ArtistsTableViewController.swift in Sources */,
+				C172175820E01EE500ABC2DF /* Artwork.swift in Sources */,
 				C155153220C43EE200384852 /* ArtistViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

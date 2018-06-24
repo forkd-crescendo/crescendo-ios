@@ -8,9 +8,15 @@
 
 import UIKit
 
-class ArtistDetailViewController: UIViewController {
+class ArtistDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let animals = ["cat", "dog", "tiger"]
+    
+
+    
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var artworksTableView: UITableView!
     
     var artist: Artist?
     
@@ -29,6 +35,16 @@ class ArtistDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return animals.count
+
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = animals[indexPath.row]
+        return cell
+    }
 
     /*
     // MARK: - Navigation

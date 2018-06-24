@@ -1,5 +1,5 @@
 //
-//  ArtistsTableViewController.swift
+//  FavoritesTableViewController.swift
 //  crescendo-ios
 //
 //  Created by Roosevelt Pantaleon on 24/06/18.
@@ -8,27 +8,25 @@
 
 import UIKit
 
-class ArtistTableViewCell: UITableViewCell {
-    @IBOutlet weak var pictureImageView: UIImageView!
+class FavoriteCell: UITableViewCell {
+    
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var artworkNameLabel: UILabel!
     
-    func updateViews(from artist: Artist) {
-        nameLabel.text = artist.name
-        genreLabel.text = artist.genre
+    func updateView(for artwork: Artwork) {
+        nameLabel.text = artwork.artistName
+        artworkNameLabel.text = artwork.title
     }
-    
-    
 }
 
-class ArtistsTableViewController: UITableViewController {
-    var artists: [Artist] = []
+class FavoritesTableViewController: UITableViewController {
+    var artworks: [Artwork] = []
     var currentArtistIndex: Int = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -39,8 +37,9 @@ class ArtistsTableViewController: UITableViewController {
         // update cell height
         tableView.beginUpdates()
         tableView.endUpdates()
-
+        
         generateMockData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,16 +56,13 @@ class ArtistsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return artists.count
+        return artworks.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! ArtistTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FavoriteCell
         
-        cell.updateViews(from: artists[indexPath.row])
-        
-
+        cell.updateView(for: artworks[indexPath.row])
         
         return cell
     }
@@ -74,24 +70,10 @@ class ArtistsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
- 
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentArtistIndex = indexPath.row
-        self.performSegue(withIdentifier: "showArtistDetail", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showArtistDetail" {
-            let artistsDetailViewController = (segue.destination as! ArtistDetailViewController)
-            artistsDetailViewController.artist = artists[currentArtistIndex]
-        }
-
-    }
     
     func generateMockData() {
         for index in 1...10 {
-            artists.append(Artist(name: "mi artista \(index)", genre: "mi genero \(index)"))
+            artworks.append(Artwork(title: "title \(index)", description: "description \(index)", videoId: "video \(index)", userId: "userId \(index)", thumbnail: "thumbnail \(index)", artistName: "artistname \(index)"))
         }
     }
 

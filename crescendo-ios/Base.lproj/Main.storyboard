@@ -96,7 +96,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="QVK-3I-MGi" kind="show" id="UG5-vb-JjZ"/>
+                                            <segue destination="L4g-m6-Emz" kind="show" id="cS7-ar-hC1"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -139,7 +139,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fFl-NM-e7q">
-                                <rect key="frame" x="50" y="84" width="275" height="434"/>
+                                <rect key="frame" x="50" y="40" width="275" height="434"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y94-RX-diK">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="24"/>
@@ -216,7 +216,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofo-rq-iis" customClass="BorderView" customModule="crescendo_ios" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="538" width="200" height="40"/>
+                                <rect key="frame" x="87.5" y="494" width="200" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="EB3-kn-QPZ"/>
                                     <constraint firstAttribute="height" constant="40" id="ddJ-bZ-XLV"/>
@@ -236,6 +236,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="registerAction:" destination="L4g-m6-Emz" eventType="touchUpInside" id="Omc-Fr-Fx8"/>
+                                    <segue destination="Gwf-Zb-lwL" kind="show" id="pSp-HU-S0d"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -261,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CBc-E5-6g8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="757.60000000000002" y="1305.697151424288"/>
+            <point key="canvasLocation" x="758" y="1306"/>
         </scene>
         <!--Artists Table View Controller-->
         <scene sceneID="0rS-HN-NQ1">
@@ -425,7 +426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQV-Bu-y2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4168.8000000000002" y="283.80809595202402"/>
+            <point key="canvasLocation" x="4169" y="284"/>
         </scene>
         <!--Artwork View Controller-->
         <scene sceneID="Rcy-4j-99T">
@@ -482,7 +483,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohz-xW-fLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5927" y="284"/>
+            <point key="canvasLocation" x="4169" y="989"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="8rx-HB-DvR">
@@ -589,7 +590,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLV-wD-72j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4212" y="983.65817091454278"/>
+            <point key="canvasLocation" x="3273" y="989"/>
         </scene>
         <!--Favoritos-->
         <scene sceneID="oYI-O2-pDC">
@@ -608,7 +609,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hv2-0E-6Qh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3272.8000000000002" y="983.65817091454278"/>
+            <point key="canvasLocation" x="2334" y="989"/>
         </scene>
         <!--Favorites Table View Controller-->
         <scene sceneID="ugK-VZ-T7y">
@@ -675,7 +676,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sch-JY-vSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4212" y="1687.1064467766118"/>
+            <point key="canvasLocation" x="3273" y="1693"/>
         </scene>
         <!--Demos-->
         <scene sceneID="YWv-Td-BNo">
@@ -694,7 +695,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZU6-Ft-td8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3272.8000000000002" y="1687.1064467766118"/>
+            <point key="canvasLocation" x="2334" y="1693"/>
         </scene>
         <!--My Profile View Controller-->
         <scene sceneID="pc0-Ub-dK7">
@@ -720,9 +721,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iE-KQ-pql" customClass="BorderView" customModule="crescendo_ios" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="550" width="200" height="18"/>
+                                <rect key="frame" x="87.5" y="528" width="200" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="5bd-0h-4nA"/>
+                                    <constraint firstAttribute="height" constant="40" id="w1L-Rr-NdD"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="1" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Cerrar Sesion"/>
@@ -774,7 +776,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8xE-uo-ngV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3272.8000000000002" y="2396.8515742128939"/>
+            <point key="canvasLocation" x="3273" y="2397"/>
         </scene>
         <!--Perfil-->
         <scene sceneID="jvy-Gc-Plg">
@@ -840,4 +842,8 @@
         <image name="star" width="24" height="24"/>
         <image name="users" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="pSp-HU-S0d"/>
+        <segue reference="cS7-ar-hC1"/>
+    </inferredMetricsTieBreakers>
 </document>

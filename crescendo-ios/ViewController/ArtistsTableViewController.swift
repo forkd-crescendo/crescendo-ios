@@ -31,7 +31,8 @@ class ArtistTableViewCell: UITableViewCell {
 class ArtistsTableViewController: UITableViewController {
     var artists: [Artist] = []
     var currentArtistIndex: Int = 0
-
+    let settings = SettingsRepository()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -106,7 +107,7 @@ class ArtistsTableViewController: UITableViewController {
     
     func updateData() {
         
-        let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+        let headers = ["Authorization" : settings.auth_token! ]
         
         Alamofire.request(CrescendoApi.artistsUrl, headers: headers)
             .validate()
@@ -117,7 +118,6 @@ class ArtistsTableViewController: UITableViewController {
                     let json = JSON(value)
                     self.artists = Artist.buildAll(from: json.arrayValue)
                     self.tableView!.reloadData()
-                    print(json)
                     
                 case .failure(let error):
                     print(error)

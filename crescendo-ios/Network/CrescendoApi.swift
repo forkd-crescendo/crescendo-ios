@@ -10,7 +10,7 @@ import Foundation
 
 class CrescendoApi {
     
-    static let baseUrl = "http://192.168.0.10:3000"
+    static let baseUrl = "http://riverarivas.com/crescendo"
     
     public static var createArtworkUrl: String {
         return "\(baseUrl)/me/artworks"

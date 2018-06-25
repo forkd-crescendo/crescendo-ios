@@ -1,34 +1,22 @@
 //
-//  ArtworkViewController.swift
+//  MyProfileViewController.swift
 //  crescendo-ios
 //
-//  Created by Roosevelt Pantaleon on 24/06/18.
+//  Created by Franco Rivera Rivas on 6/25/18.
 //  Copyright © 2018 forkd. All rights reserved.
 //
 
 import UIKit
-import WebKit
 
-class ArtworkViewController: UIViewController, WKUIDelegate {
-    @IBOutlet weak var videoWebView: WKWebView!
-    
-    
-    var artwork: Artwork?
-    
+class MyProfileViewController: UIViewController {
+    let settings = SettingsRepository()
+    @IBAction func logoutAction(_ sender: BorderView) {
+        settings.auth_token = nil
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-            
-        if let artwork = artwork {
-            if let url = URL(string: "https://youtube.com/embed/\(String(describing: artwork.videoId))") {
-                let request = URLRequest(url: url)
-                
-                videoWebView.load(request)
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,10 +25,6 @@ class ArtworkViewController: UIViewController, WKUIDelegate {
     }
     
 
-    @IBAction func DoneAction(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     /*
     // MARK: - Navigation
 

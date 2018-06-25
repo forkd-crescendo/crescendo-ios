@@ -30,7 +30,7 @@ class ArtworkCell: UITableViewCell {
 
 class ArtistDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let animals = ["cat", "dog", "tiger"]
+    let settings = SettingsRepository()
     
 
     @IBOutlet weak var pictureImageView: UIImageView!
@@ -86,19 +86,12 @@ class ArtistDetailViewController: UIViewController, UITableViewDataSource, UITab
         return 100
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentArtworkIndex = indexPath.row
-        print("did select row at \(indexPath.row)")
-        self.performSegue(withIdentifier: "ShowArtworkVideo", sender: self)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowArtworkVideo" {
             let artworkViewController = (segue.destination as! UINavigationController).viewControllers.first as! ArtworkViewController
-            
+            currentArtworkIndex = (artworksTableView.indexPathForSelectedRow?.row)!
             artworkViewController.artwork = artworks[currentArtworkIndex]
-            print("prepare for \(artworkViewController.artwork?.videoId)")
-            print("current index \(currentArtworkIndex)")
         }
         return
     }
@@ -114,10 +107,9 @@ class ArtistDetailViewController: UIViewController, UITableViewDataSource, UITab
     */
     
     func updateData() {
-        let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+        let headers = ["Authorization" : settings.auth_token! ]
         
         let getArtworksUrl = CrescendoApi.getArtworks(by: artist!.id)
-        print(getArtworksUrl)
         
         Alamofire.request(getArtworksUrl, headers: headers)
             .validate()

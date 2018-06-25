@@ -239,6 +239,7 @@
 				9DB9359220E06DA400F5F939 /* SwiftyJSON.xcodeproj */,
 				9D8E008C20B86F3000B41BDE /* crescendo-ios */,
 				9D8E008B20B86F3000B41BDE /* Products */,
+				9D9D087920E0CA0200D7D7BF /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -268,6 +269,14 @@
 			path = "crescendo-ios";
 			sourceTree = "<group>";
 		};
+		9D9D087920E0CA0200D7D7BF /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C17217B720E0579200ABC2DF /* DemosTableViewController.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		9DB9352D20E06D6300F5F939 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,12 +294,13 @@
 		9DB9357920E06D9500F5F939 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C155153120C43EE200384852 /* ArtistViewController.swift */,
-				C10E5CED20DFF952008FB670 /* ArtistsTableViewController.swift */,
-				C10E5CEF20E00D0E008FB670 /* ArtistDetailViewController.swift */,
-				C172175520E01C8F00ABC2DF /* FavoritesTableViewController.swift */,
-				C17217B520E048F300ABC2DF /* ArtworkViewController.swift */,
-				C17217B720E0579200ABC2DF /* DemosTableViewController.swift */,
+				9DB9358520E06D9700F5F939 /* AlamofireImage.framework */,
+				9DB9358720E06D9700F5F939 /* AlamofireImage iOS Tests.xctest */,
+				9DB9358920E06D9700F5F939 /* AlamofireImage.framework */,
+				9DB9358B20E06D9700F5F939 /* AlamofireImage macOS Tests.xctest */,
+				9DB9358D20E06D9700F5F939 /* AlamofireImage.framework */,
+				9DB9358F20E06D9700F5F939 /* AlamofireImage tvOS Tests.xctest */,
+				9DB9359120E06D9700F5F939 /* AlamofireImage.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";

@@ -10,7 +10,13 @@ import Foundation
 
 class CrescendoApi {
     
+<<<<<<< HEAD
     static let baseUrl = "http://riverarivas.com/crescendo"
+=======
+    //static let baseUrl = "http://192.168.0.10:3000"
+    static let baseUrl = "http://riverarivas.com/crescendo"
+
+>>>>>>> 6af091680924d81e375c7dbe9db04322c154b5af
     
     public static var createArtworkUrl: String {
         return "\(baseUrl)/me/artworks"
@@ -22,6 +28,10 @@ class CrescendoApi {
     
     public static func getArtworks(by userId: String) -> String {
         return "\(baseUrl)/users/\(userId)/artworks"
+    }
+    
+    public static var getAllArtworks: String {
+        return "\(baseUrl)/me/favourites/artworks"
     }
     
     public static var createFavoriteUrl: String {

@@ -352,6 +352,7 @@
                                     <outlet property="artworkNameLabel" destination="4Tu-9x-UMr" id="XoQ-lg-tiw"/>
                                     <outlet property="nameLabel" destination="qDj-l2-QQh" id="Lx9-qq-Ias"/>
                                     <outlet property="thumbnailImageView" destination="nd6-rc-olo" id="SaS-h2-6q7"/>
+                                    <segue destination="bkI-fd-Zag" kind="show" identifier="ShowArtworkVideo" id="R96-kd-yqZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -425,6 +426,7 @@
                                     <outlet property="artworkNameLabel" destination="4Ua-Kz-swV" id="cFe-Lg-vUI"/>
                                     <outlet property="nameLabel" destination="GBu-W4-2jl" id="mbT-zh-3Dz"/>
                                     <outlet property="thumbnailImageView" destination="CPX-wl-rZV" id="UWP-Uu-oz1"/>
+                                    <segue destination="bkI-fd-Zag" kind="show" identifier="ShowArtworkVideo" id="QP5-n5-YaK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -541,4 +543,7 @@
         <image name="star-border" width="64" height="64"/>
         <image name="users" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="QP5-n5-YaK"/>
+    </inferredMetricsTieBreakers>
 </document>

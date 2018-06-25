@@ -31,7 +31,7 @@ class DemoCell: UITableViewCell {
 
 class DemosTableViewController: UITableViewController {
     var artworks: [Artwork] = []
-
+    var currentArtworkIndex: Int = 0
     
     
     override func viewDidLoad() {
@@ -79,6 +79,22 @@ class DemosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected \(indexPath.row)")
+        currentArtworkIndex = indexPath.row
+        self.performSegue(withIdentifier: "ShowArtworkVideo", sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowArtworkVideo" {
+            let artworkViewController = (segue.destination as! UINavigationController).viewControllers.first as! ArtworkViewController
+            currentArtworkIndex = (self.tableView.indexPathForSelectedRow?.row)!
+            
+            artworkViewController.artwork = artworks[currentArtworkIndex]
+        }
+        return
+    }
+
     
     func updateData() {
         let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]

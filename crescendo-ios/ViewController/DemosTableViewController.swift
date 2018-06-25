@@ -20,8 +20,8 @@ class DemoCell: UITableViewCell {
     @IBOutlet weak var artworkNameLabel: UILabel!
     
     func updateview(for artwork: Artwork) {
-        nameLabel.text = artwork.artistName
-        artworkNameLabel.text = artwork.title
+        nameLabel.text = artwork.title
+        artworkNameLabel.text = artwork.description
         
         if let url = URL(string: artwork.thumbnail) {
             thumbnailImageView.af_setImage(withURL: url)
@@ -32,7 +32,7 @@ class DemoCell: UITableViewCell {
 class DemosTableViewController: UITableViewController {
     var artworks: [Artwork] = []
     var currentArtworkIndex: Int = 0
-    
+    let settings = SettingsRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +40,13 @@ class DemosTableViewController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+       self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Agregar", style: .plain, target: self, action: #selector(addTapped))
+        
         updateData()
     }
-
+    @objc func addTapped(){
+        performSegue(withIdentifier: "showAddDemo", sender: self)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -97,7 +99,7 @@ class DemosTableViewController: UITableViewController {
 
     
     func updateData() {
-        let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+        let headers = ["Authorization" : settings.auth_token!]
         
         
         Alamofire.request(CrescendoApi.createArtworkUrl, headers: headers)

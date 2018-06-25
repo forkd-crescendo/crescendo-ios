@@ -31,6 +31,7 @@ class FavoriteCell: UITableViewCell {
 class FavoritesTableViewController: UITableViewController {
     var artworks: [Artwork] = []
     var currentArtworkIndex: Int = 0
+    let settings = SettingsRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +108,7 @@ class FavoritesTableViewController: UITableViewController {
     
     func updateData() {
         
-        let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+        let headers = ["Authorization" : settings.auth_token!]
         //me/favourites/artworks
         
         Alamofire.request(CrescendoApi.getAllArtworks, headers: headers)

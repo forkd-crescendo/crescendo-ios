@@ -43,7 +43,8 @@ class AuthenticationViewController: UIViewController {
                             }
                             else if(json.dictionaryValue["auth_token"] != nil){
                                 self.settings.auth_token = (json.dictionaryValue["auth_token"]?.stringValue)!
-                                print("bienvenido")
+                                print("bienvenido, token: " + self.settings.auth_token!)
+                                self.performSegue(withIdentifier: "showMainApp", sender: self)
                             }
                         case .failure(let error):
                             print(error)

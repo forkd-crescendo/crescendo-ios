@@ -9,15 +9,12 @@
 import Foundation
 
 class CrescendoApi {
-    
-<<<<<<< HEAD
-    static let baseUrl = "http://riverarivas.com/crescendo"
-=======
-    //static let baseUrl = "http://192.168.0.10:3000"
-    static let baseUrl = "http://riverarivas.com/crescendo"
 
->>>>>>> 6af091680924d81e375c7dbe9db04322c154b5af
+    static let baseUrl = "http://riverarivas.com/crescendo"
     
+    public static var meUrl: String {
+        return "\(baseUrl)/me"
+    }
     public static var createArtworkUrl: String {
         return "\(baseUrl)/me/artworks"
     }

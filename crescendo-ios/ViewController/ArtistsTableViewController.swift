@@ -40,9 +40,9 @@ class ArtistTableViewCell: UITableViewCell {
 }
 
 class ArtistsTableViewController: UITableViewController {
+    let settings = SettingsRepository()
     var artists: [Artist] = []
     var currentArtistIndex: Int = 0
-    let settings = SettingsRepository()
     var favoritesIds: [Int] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,9 +115,9 @@ class ArtistsTableViewController: UITableViewController {
     @IBAction func likeAction(_ sender: UIButton) {
 
         // parent of parent
-        if let index = self.tableView.indexPath(for: sender.superview?.superview as! ArtistTableViewCell)?.row {
+        if let index = self.tableView.indexPath(for: sender.superview?.superview?.superview as! ArtistTableViewCell)?.row {
             let selectedFavoriteId = artists[index].id
-            let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+            let headers = ["Authorization" : settings.auth_token!]
 
 
             if isIdInFavorites(id: Int(selectedFavoriteId)!, ids: favoritesIds) {
@@ -131,8 +131,6 @@ class ArtistsTableViewController: UITableViewController {
                         case .success(let value):
 
                             let json = JSON(value)
-                            print(json)
-
                             let name = "star-border"
                             sender.setImage(UIImage(named: name), for: .normal)
 
@@ -161,12 +159,9 @@ class ArtistsTableViewController: UITableViewController {
                         case .success(let value):
 
                             let json = JSON(value)
-                            print(json)
-
                             let name = "star-filled"
                             sender.setImage(UIImage(named: name), for: .normal)
-
-                            self.favoritesIds.append(Int(selectedFavoriteId)!)
+                        self.favoritesIds.append(Int(selectedFavoriteId)!)
 
                         case .failure(let error):
                             print(error)
@@ -203,7 +198,7 @@ class ArtistsTableViewController: UITableViewController {
 
         self.favoritesIds = []
 
-        let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+        let headers = ["Authorization" : settings.auth_token!]
 
         Alamofire.request(CrescendoApi.createFavoriteUrl, headers: headers)
             .validate()
@@ -211,9 +206,6 @@ class ArtistsTableViewController: UITableViewController {
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    print("this json only favorites ids")
-                    print(json)
-
                     for jsonitem in json.array! {
                         self.favoritesIds.append(Int(jsonitem["favourite_id"].stringValue)!)
                     }

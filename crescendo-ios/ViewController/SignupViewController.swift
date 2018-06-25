@@ -46,7 +46,13 @@ class SignupViewController: UIViewController {
                     case .success(let value):
                         let json = JSON(value)
                         print(json.dictionaryValue)
-                        self.settings.auth_token = (json.dictionaryValue["auth_token"]?.stringValue)!
+                        if (json.dictionaryValue["message"] == "Invalid credentials"){
+                            print("no son las credenciales")
+                        }
+                        else if(json.dictionaryValue["auth_token"] != nil){
+                            self.settings.auth_token = (json.dictionaryValue["auth_token"]?.stringValue)!
+                            print("bienvenido")
+                        }
                     case .failure(let error):
                         print(error)
                     }

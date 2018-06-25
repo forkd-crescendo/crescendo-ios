@@ -106,6 +106,14 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdb-o4-nt7">
+                                            <rect key="frame" x="324" y="32" width="35" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button" image="star-border"/>
+                                            <connections>
+                                                <action selector="likeAction:" destination="C0l-uA-YIX" eventType="touchUpInside" id="kBU-5t-rAk"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -376,16 +384,16 @@
             </objects>
             <point key="canvasLocation" x="2333.5999999999999" y="983.65817091454278"/>
         </scene>
-        <!--Favorites Table View Controller-->
+        <!--Demos Table View Controller-->
         <scene sceneID="ugK-VZ-T7y">
             <objects>
-                <tableViewController id="qMb-Ur-EKK" customClass="FavoritesTableViewController" customModule="crescendo_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="qMb-Ur-EKK" customClass="DemosTableViewController" customModule="crescendo_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bFa-wN-E7P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="LLV-HA-M8A" customClass="FavoriteCell" customModule="crescendo_ios" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="LLV-HA-M8A" customClass="DemoCell" customModule="crescendo_ios" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LLV-HA-M8A" id="dZp-gw-5eL">
@@ -413,9 +421,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="artworkNameLabel" destination="4Ua-Kz-swV" id="RUw-Nj-69n"/>
-                                    <outlet property="nameLabel" destination="GBu-W4-2jl" id="OgH-vy-8EQ"/>
-                                    <outlet property="thumbnailImageView" destination="CPX-wl-rZV" id="2KK-g8-ggw"/>
+                                    <outlet property="artworkNameLabel" destination="4Ua-Kz-swV" id="cFe-Lg-vUI"/>
+                                    <outlet property="nameLabel" destination="GBu-W4-2jl" id="mbT-zh-3Dz"/>
+                                    <outlet property="thumbnailImageView" destination="CPX-wl-rZV" id="UWP-Uu-oz1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -529,6 +537,7 @@
         <image name="mike" width="24" height="24"/>
         <image name="profile" width="30" height="30"/>
         <image name="star" width="24" height="24"/>
+        <image name="star-border" width="64" height="64"/>
         <image name="users" width="24" height="24"/>
     </resources>
 </document>

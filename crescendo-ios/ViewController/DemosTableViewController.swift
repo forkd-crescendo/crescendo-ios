@@ -1,5 +1,5 @@
 //
-//  FavoritesTableViewController.swift
+//  DemosTableViewController.swift
 //  crescendo-ios
 //
 //  Created by Roosevelt Pantaleon on 24/06/18.
@@ -11,14 +11,15 @@ import Alamofire
 import AlamofireImage
 import SwiftyJSON
 
-class FavoriteCell: UITableViewCell {
+class DemoCell: UITableViewCell {
+    
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artworkNameLabel: UILabel!
     
-    func updateView(for artwork: Artwork) {
+    func updateview(for artwork: Artwork) {
         nameLabel.text = artwork.artistName
         artworkNameLabel.text = artwork.title
         
@@ -28,9 +29,10 @@ class FavoriteCell: UITableViewCell {
     }
 }
 
-class FavoritesTableViewController: UITableViewController {
+class DemosTableViewController: UITableViewController {
     var artworks: [Artwork] = []
-    var currentArtistIndex: Int = 0
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +42,7 @@ class FavoritesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        // update cell height
-        tableView.beginUpdates()
-        tableView.endUpdates()
-        
-//        generateMockData()
         updateData()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,29 +63,23 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FavoriteCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DemoCell
         
-        cell.updateView(for: artworks[indexPath.row])
+        cell.updateview(for: artworks[indexPath.row])
         
         return cell
     }
+    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
     
-    func generateMockData() {
-        for index in 1...10 {
-            artworks.append(Artwork(title: "title \(index)", description: "description \(index)", videoId: "video \(index)", userId: "userId \(index)", thumbnail: "thumbnail \(index)", artistName: "artistname \(index)"))
-        }
-    }
-    
     func updateData() {
-        
         let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
         
         
-        Alamofire.request(CrescendoApi.createFavoriteUrl, headers: headers)
+        Alamofire.request(CrescendoApi.createArtworkUrl, headers: headers)
             .validate()
             .responseJSON(completionHandler: { response in
                 switch response.result {
@@ -98,17 +87,16 @@ class FavoritesTableViewController: UITableViewController {
                     let json = JSON(value)
                     self.artworks = Artwork.buildAll(from: json.arrayValue)
                     self.tableView!.reloadData()
-                    
+
                     print(json)
-                
+
                 case .failure(let error):
                     print(error)
                 }
             })
+        
+        
 
-        
-        
     }
-
 
 }

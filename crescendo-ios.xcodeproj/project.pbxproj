@@ -27,6 +27,7 @@
 		C17217B120E02B5000ABC2DF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C172176820E02B2600ABC2DF /* Alamofire.framework */; };
 		C17217B220E02B5000ABC2DF /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C172176820E02B2600ABC2DF /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C17217B620E048F300ABC2DF /* ArtworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17217B520E048F300ABC2DF /* ArtworkViewController.swift */; };
+		C17217B820E0579200ABC2DF /* DemosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17217B720E0579200ABC2DF /* DemosTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +237,7 @@
 		C172177520E02B2E00ABC2DF /* AlamofireImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlamofireImage.xcodeproj; path = AlamofireImage/AlamofireImage.xcodeproj; sourceTree = "<group>"; };
 		C172178F20E02B3500ABC2DF /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		C17217B520E048F300ABC2DF /* ArtworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkViewController.swift; sourceTree = "<group>"; };
+		C17217B720E0579200ABC2DF /* DemosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemosTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +307,7 @@
 				C10E5CEF20E00D0E008FB670 /* ArtistDetailViewController.swift */,
 				C172175520E01C8F00ABC2DF /* FavoritesTableViewController.swift */,
 				C17217B520E048F300ABC2DF /* ArtworkViewController.swift */,
+				C17217B720E0579200ABC2DF /* DemosTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C17217B820E0579200ABC2DF /* DemosTableViewController.swift in Sources */,
 				9D8E009020B86F3000B41BDE /* ViewController.swift in Sources */,
 				9D8E009620B86F3100B41BDE /* crescendo_ios.xcdatamodeld in Sources */,
 				C155153020C43EA500384852 /* Artist.swift in Sources */,

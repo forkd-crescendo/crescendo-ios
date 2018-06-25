@@ -17,6 +17,8 @@ class ArtistTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     
+    
+    
     func updateViews(from artist: Artist) {
         nameLabel.text = artist.name
         genreLabel.text = artist.genre
@@ -31,6 +33,7 @@ class ArtistTableViewCell: UITableViewCell {
 class ArtistsTableViewController: UITableViewController {
     var artists: [Artist] = []
     var currentArtistIndex: Int = 0
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +91,7 @@ class ArtistsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         currentArtistIndex = indexPath.row
         self.performSegue(withIdentifier: "showArtistDetail", sender: self)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,11 +102,34 @@ class ArtistsTableViewController: UITableViewController {
 
     }
     
-//    func generateMockData() {
-//        for index in 1...10 {
-//            artists.append(Artist(name: "mi artista \(index)", genre: "mi genero \(index)"))
-//        }
-//    }
+    @IBAction func likeAction(_ sender: UIButton) {
+        
+        if let index = self.tableView.indexPath(for: sender.superview?.superview as! ArtistTableViewCell)?.row {
+            
+            let selectedFavoriteId = artists[index].id
+            
+            
+            let parameters = ["favourite_id" : String(selectedFavoriteId)]
+            let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+            
+            Alamofire.request(CrescendoApi.createFavoriteUrl, method: .post, parameters: parameters, headers: headers)
+                .validate()
+                .responseJSON(completionHandler: { response in
+                    switch response.result {
+                    case .success(let value):
+                        
+                        let json = JSON(value)
+                        
+                        print(json)
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
+                })
+            
+            print(selectedFavoriteId)
+        }
+    }
     
     func updateData() {
         
@@ -117,16 +144,12 @@ class ArtistsTableViewController: UITableViewController {
                     let json = JSON(value)
                     self.artists = Artist.buildAll(from: json.arrayValue)
                     self.tableView!.reloadData()
-                    print(json)
                     
                 case .failure(let error):
                     print(error)
                 }
             })
-        
-        
-        
     }
-
-
 }
+
+

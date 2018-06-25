@@ -49,6 +49,11 @@ class DemosTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateData()
+        self.tableView!.reloadData()
+    }
 
     // MARK: - Table view data source
 
@@ -87,8 +92,6 @@ class DemosTableViewController: UITableViewController {
                     let json = JSON(value)
                     self.artworks = Artwork.buildAll(from: json.arrayValue)
                     self.tableView!.reloadData()
-
-                    print(json)
 
                 case .failure(let error):
                     print(error)

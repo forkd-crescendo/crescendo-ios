@@ -17,14 +17,23 @@ class ArtistTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     
+    @IBOutlet weak var likeButton: UIButton!
     
+//    func setFavoriteImage() {
+//        let name = isFavorite ? "favorite-black" : "favorite-border"
+//        //favoriteButton.imageView!.image = UIImage(named: name)
+//        favoriteButton.setImage(UIImage(named: name), for: .normal)
+//    }
     
-    func updateViews(from artist: Artist) {
+    func updateViews(from artist: Artist, isFavorite: Bool) {
         nameLabel.text = artist.name
         genreLabel.text = artist.genre
         if let url = URL(string: artist.photoUrl) {
             pictureImageView.af_setImage(withURL: url)
         }
+        
+        let name = isFavorite ? "star-filled" : "star-border"
+        likeButton.setImage(UIImage(named: name), for: .normal)
     }
     
     
@@ -33,6 +42,7 @@ class ArtistTableViewCell: UITableViewCell {
 class ArtistsTableViewController: UITableViewController {
     var artists: [Artist] = []
     var currentArtistIndex: Int = 0
+    var favoritesIds: [Int] = []
 
 
     override func viewDidLoad() {
@@ -51,6 +61,7 @@ class ArtistsTableViewController: UITableViewController {
 
         // generateMockData()
         updateData()
+        getFavoritesIds()
     }
     
 
@@ -76,9 +87,9 @@ class ArtistsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! ArtistTableViewCell
         
-        cell.updateViews(from: artists[indexPath.row])
         
-
+        
+        cell.updateViews(from: artists[indexPath.row], isFavorite: isIdInFavorites(id: Int(artists[indexPath.row].id)!, ids: favoritesIds))
         
         return cell
     }
@@ -103,32 +114,70 @@ class ArtistsTableViewController: UITableViewController {
     }
     
     @IBAction func likeAction(_ sender: UIButton) {
-        
+    
+        // parent of parent
         if let index = self.tableView.indexPath(for: sender.superview?.superview as! ArtistTableViewCell)?.row {
-            
             let selectedFavoriteId = artists[index].id
-            
-            
-            let parameters = ["favourite_id" : String(selectedFavoriteId)]
             let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+
             
-            Alamofire.request(CrescendoApi.createFavoriteUrl, method: .post, parameters: parameters, headers: headers)
-                .validate()
-                .responseJSON(completionHandler: { response in
-                    switch response.result {
-                    case .success(let value):
-                        
-                        let json = JSON(value)
-                        
-                        print(json)
-                        
-                    case .failure(let error):
-                        print(error)
-                    }
-                })
-            
-            print(selectedFavoriteId)
+            if isIdInFavorites(id: Int(selectedFavoriteId)!, ids: favoritesIds) {
+                
+                let deleteFavoriteURL = CrescendoApi.deleteFavoriteUrl(for: Int(selectedFavoriteId)!)
+                
+                Alamofire.request(deleteFavoriteURL, method: .delete, headers: headers)
+                    .validate()
+                    .responseJSON(completionHandler: { response in
+                        switch response.result {
+                        case .success(let value):
+                            
+                            let json = JSON(value)
+                            print(json)
+                            
+                            let name = "star-border"
+                            sender.setImage(UIImage(named: name), for: .normal)
+                            
+                            // finding index using index(where:) method
+                            if let index = self.favoritesIds.index(where: { $0 ==  Int(selectedFavoriteId)!}) {
+                                self.favoritesIds.remove(at: index)
+
+                            }
+                                // removing item
+                            
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                    })
+                
+                print(selectedFavoriteId)
+                
+            } else {
+                let parameters = ["favourite_id" : String(selectedFavoriteId)]
+                
+                Alamofire.request(CrescendoApi.createFavoriteUrl, method: .post, parameters: parameters, headers: headers)
+                    .validate()
+                    .responseJSON(completionHandler: { response in
+                        switch response.result {
+                        case .success(let value):
+                            
+                            let json = JSON(value)
+                            print(json)
+                            
+                            let name = "star-filled"
+                            sender.setImage(UIImage(named: name), for: .normal)
+                            
+                            self.favoritesIds.append(Int(selectedFavoriteId)!)
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                    })
+                
+                print(selectedFavoriteId)
+            }
         }
+        
     }
     
     func updateData() {
@@ -150,6 +199,41 @@ class ArtistsTableViewController: UITableViewController {
                 }
             })
     }
+    
+    func getFavoritesIds() {
+        
+        self.favoritesIds = []
+        
+        let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+        
+        Alamofire.request(CrescendoApi.createFavoriteUrl, headers: headers)
+            .validate()
+            .responseJSON(completionHandler: { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("this json only favorites ids")
+                    print(json)
+                    
+                    for jsonitem in json.array! {
+                        self.favoritesIds.append(Int(jsonitem["favourite_id"].stringValue)!)
+                    }
+                    
+                case .failure(let error):
+                    print(error)
+                }
+            })
+    }
+    
+    func isIdInFavorites(id: Int, ids: [Int]) -> Bool {
+        for idItem in ids {
+            if idItem == id {
+                return true
+            }
+        }
+        return false
+    }
+    
 }
 
 

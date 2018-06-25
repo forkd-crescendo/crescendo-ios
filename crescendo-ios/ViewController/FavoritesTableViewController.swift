@@ -54,6 +54,11 @@ class FavoritesTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateData()
+        self.tableView!.reloadData()
+    }
 
     // MARK: - Table view data source
 
@@ -88,9 +93,9 @@ class FavoritesTableViewController: UITableViewController {
     func updateData() {
         
         let headers = ["Authorization" : "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1Mjk5NDc1MDF9.WKmBLiLaMAEv6ZYHGcvRdt1uMfIzLH1GGTGPekSNtZM"]
+        //me/favourites/artworks
         
-        
-        Alamofire.request(CrescendoApi.createFavoriteUrl, headers: headers)
+        Alamofire.request(CrescendoApi.getAllArtworks, headers: headers)
             .validate()
             .responseJSON(completionHandler: { response in
                 switch response.result {
@@ -98,9 +103,7 @@ class FavoritesTableViewController: UITableViewController {
                     let json = JSON(value)
                     self.artworks = Artwork.buildAll(from: json.arrayValue)
                     self.tableView!.reloadData()
-                    
-                    print(json)
-                
+                                    
                 case .failure(let error):
                     print(error)
                 }
